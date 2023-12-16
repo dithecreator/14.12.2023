@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 02</title>
+    <style>
+        .form-group {
+            margin: 4px;
+        }
+
+        .form-group label {
+            width: 75px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="form-group">
+            <label>Логин</label>
+            <input id = "login" type="text" name="login">
+        </div>
+        <div class="form-group">
+            <label>Пароль</label>
+            <input id = "password" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{6,}" required>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Зарегистрироваться">
+        </div>
+    </form>
+    
+    <script>
+        /*
+        Задание:
+        Добавьте валидацию формы:
+        Поле ввода логина обязательное и должно содержать не менее 4 символов
+        Поле ввода пароля должно содержать строковое значение, состоящие не менее чем из 6 символов букв в нижнем и верхнем 
+        регистре, цифры и спец символа.
+
+        Проверку нужно организовать с помощью встроенной валидации.
+        Регулярное выражение для проверки пароля - (?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&\*]).{6,}
+        */
+
+        let form = document.forms[0];
+        let login = document.getElementById("login");
+        let password = document.getElementById("password")
+
+            form.addEventListener("submit", function (event) {
+                if (login.value.length < 4) {
+                alert("Логин должен содержать не менее 4 символов");
+                event.preventDefault(); 
+            }
+
+            if (!password.checkValidity()) {
+                alert("Пароль должен соответствовать указанным требованиям");
+                event.preventDefault();
+            }
+
+            
+        });
+    </script>
+</body>
+
+</html>
